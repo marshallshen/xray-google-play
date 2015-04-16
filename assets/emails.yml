@@ -1,0 +1,19 @@
+---
+finance:
+  - id: 1
+    subject: I love money
+    content: I love finance, I love money, I want to see all the movies about money
+  - id: 2
+    subject: Captialism is best
+    content: I just studied finance, I feel great about making money, I want to be rich.
+
+travel:
+  - id: 1
+    subject: I love travel
+    content: Life is about adventure, we should spend more time exploring different places
+  - id: 2
+    subject: Travel to Paris
+    content: Hi I am going to paris this weekend, I love travel to places
+
+
+
