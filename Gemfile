@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'google-search'
+gem 'ruby-gmail'
 gem 'market_bot'
