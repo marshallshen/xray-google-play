@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+lib = File.expand_path(File.dirname(__FILE__) + '/../lib')
+$LOAD_PATH.unshift(lib) if File.directory?(lib) && !$LOAD_PATH.include?(lib)
+
+require 'google_play'
+
+puts GooglePlay.experiment
+
+# While there are more rounds
+#    let r = Scrape recommendations for A and B, and save them
+#    Send emails between A and B
+#    Wait T
+#    let r' = Scrape recommendations for A and B, and save them
+#    Diff r, r'
+#    Are there any differences?
