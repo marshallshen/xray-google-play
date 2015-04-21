@@ -23,26 +23,33 @@ class GooglePlayScraper
       c.default_wait_time = 5
     end
 
-    phantom_opts = [ '--debug=no',
-                     '--load-images=no',
-                     '--ignore-ssl-errors=yes',
-                     '--ssl-protocol=TLSv1']
+    phantom_opts = %w(--debug=no --load-images=no --ignore-ssl-errors=yes --ssl-protocol=TLSv1)
 
     Capybara.register_driver :poltergeist do |app|
       Capybara::Poltergeist::Driver.new(app, phantomjs_options: phantom_opts, debug: false)
     end
   end
 
-  def login!
-    session.visit(LOGIN_ENDPOINT)
+  def login_and_redirect! redirection_page = ''
+    endpoint = endpoint(redirection_page)
 
-    session.within("form#gaia_loginform") do
+    session.visit(endpoint)
+
+    session.within('form#gaia_loginform') do
       session.fill_in('Email', with: account[:login])
       session.fill_in('Passwd', with: account[:password])
     end
 
     session.check 'Stay signed in'
     session.click_on 'Sign in'
+  end
+
+  def endpoint redirection_page
+    if redirection_page.empty?
+      LOGIN_ENDPOINT + '?continue=' + redirection_page
+    else
+      LOGIN_ENDPOINT
+    end
   end
 
   class Movie
@@ -58,9 +65,8 @@ class GooglePlayScraper
   end
 
   def get_movie_recommendations
-    login!
-    session.visit(MOVIE_ENDPOINT)
-    session.find(:link, "Recommended for You").click
+    login_and_redirect!(MOVIE_ENDPOINT) unless logged_in?
+    session.find(:link, 'Recommended for You').click
     screenshot!
     movies_from_selector('.details')
   end
@@ -69,6 +75,10 @@ class GooglePlayScraper
     session.all(:css, klass).map do |element|
       parse_movie_from_element(element)
     end
+  end
+
+  def logged_in?
+    session.has_link?('Sign in')
   end
 
   def parse_movie_from_element element

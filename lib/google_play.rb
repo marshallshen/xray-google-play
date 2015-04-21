@@ -25,20 +25,20 @@ module GooglePlay
     recs_after1 = play1.get_movie_recommendations
     recs_after2 = play2.get_movie_recommendations
 
-    unless collections_equal? recs_before1 recs_after1
-      puts "recommendations varied after email EMAIL for account ACCOUNT"
+    unless collections_equal? recs_before1, recs_after1
+      puts 'recommendations varied after email EMAIL for account ACCOUNT'
       puts recs_before1.inspect
       puts recs_after1.inspect
     end
 
-    unless collections_equal? recs_before2 recs_after2
-      puts "recommendations varied after email EMAIL for account ACCOUNT"
+    unless collections_equal? recs_before2, recs_after2
+      puts 'recommendations varied after email EMAIL for account ACCOUNT'
       puts recs_before2.inspect
       puts recs_after2.inspect
     end
   end
 
-  def self.collections_equal? c1, c2
+  def self.collections_equal?(c1, c2)
     c1.size == c2.size && c1.lazy.zip(c2).all? { |x, y| x == y }
   end
 
