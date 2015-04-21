@@ -21,6 +21,16 @@ class GooglePlayScraper
       c.default_driver = :poltergeist
       c.app_host = 'http://www.google.com'
     end
+
+    Capybara.register_driver :poltergeist do |app|
+      Capybara::Poltergeist::Driver.new(app,
+                                        phantomjs_options: [ '--debug=no',
+                                                             '--load-images=no',
+                                                             '--ignore-ssl-errors=yes',
+                                                             '--ssl-protocol=TLSv1'],
+                                        :debug => false)
+  end
+
   end
 
   def login!
