@@ -6,8 +6,8 @@ class GooglePlayScraper
 
   attr_accessor :google, :account
 
-  PREFERENCES_ENDPOINT = 'https://www.google.com/settings/ads'
-  LOGIN_ENDPOINT       = 'https://accounts.google.com/ServiceLogin'
+  GOOGLE_PLAY_MOVIE_ENDPOINT = 'https://play.google.com/store/movies'
+  LOGIN_ENDPOINT             = 'https://accounts.google.com/ServiceLogin'
 
   def initialize(account)
     initialize_capybara
@@ -27,45 +27,46 @@ class GooglePlayScraper
     google.visit(LOGIN_ENDPOINT)
 
     google.within("form#gaia_loginform") do
-      google.fill_in 'Email', with: account[:login]
-      google.fill_in 'Passwd', with: account[:passwd]
+      google.fill_in('Email', with: account[:login])
+      google.fill_in('Passwd', with: account[:passwd])
     end
 
     google.uncheck 'Stay signed in'
     google.click_on 'Sign in'
   end
 
-  GOOGLE_PLAY_MOVIE_URL = "https://play.google.com/store/movies"
+  class Movie
+    attr_accessor :title, :genre, :price
+  end
 
-  def get_google_play_recommendations
-    google.visit(GOOGLE_PLAY_MOVIE_URL)
+  # TODO: dump movies somewhere
+  def get_movie_recommendations
+    google.visit(GOOGLE_PLAY_MOVIE_ENDPOINT)
+
     sleep(2)
+
     recommendation_xpath = '//*[@id="body-content"]/div[2]/div/div[4]/div/h1/a[1]'
     google.find(:xpath, recommendation_xpath).click
 
-    all_movies = google.all('details') # 'details' class better?
+    sleep(1)
 
-    all_movies.map do |movie_dom|
-      get_movie_attributes(movie_dom)
+    parse_movies_from_enclosing_path('details')
+  end
+
+  # TODO: this doesn't account for pagination
+  def parse_movies_from_enclosing_path path
+    google.all(path).map do |dom|
+      parse_movie_from_dom(dom)
     end
   end
 
-  # Mark this as TODO, I have to leave soon..
-  # COmmit this and push, I"ll work on it now
-  # https://github.com/marshallshen/xray-google-play/commit/a30aa39f172077a521025825925846a61f42d7c2#diff-ed538b511af23f4531fe39245d8fcc0bR60
-  def get_movies(movie)
+  def parse_movie_from_dom dom
     Movie.new.tap do |m|
-      m.title = google.find('a title') # this won't work because google does not know the scope, yeah, we have to pass the xpath to the title, etc
+      m.title = google.find('a title')
       m.genre = google.find('')
       m.price = google.find('')
     end
   end
-
-  class Movie
-    attr_accessor :title, :genre, :price
-  end
-  # 3 dump current state of recommendations somewhere
-  #
 
   def clean!
     google.driver.clear_cookies
