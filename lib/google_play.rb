@@ -4,9 +4,9 @@ require_relative 'google_play/gmail_service.rb'
 require_relative 'google_play/scraper.rb'
 
 module GooglePlay
-  def self.experiment(account)
-    # account1 = {login: 'foo', password: 'bar'}
-    # account2 = {login: 'nicky', password: 'anaconda'}
+  def self.run
+    account1, account2 = YAML.load_file("assets/accounts.yml")
+
     play1 =  GooglePlayScraper.new(account1)
     play2 =  GooglePlayScraper.new(account2)
 
@@ -69,4 +69,3 @@ module GooglePlay
     c1.size == c2.size && c1.lazy.zip(c2).all? { |x, y| x == y }
   end
 end
-
