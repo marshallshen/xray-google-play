@@ -63,7 +63,7 @@ class GooglePlayScraper
     end
   end
 
-  def parse_movie_from_dom element
+  def parse_movie_from_element element
     Movie.new.tap do |m|
       m.title = element.find('.title').text
       m.genre = element.find('.subtitle').text
