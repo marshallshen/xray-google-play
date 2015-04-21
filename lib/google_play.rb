@@ -10,17 +10,14 @@ module GooglePlay
     play1 =  GooglePlayScraper.new(account1)
     play2 =  GooglePlayScraper.new(account2)
 
-    gmail1 = GmailService.new(account1)
-    gmail2 = GmailService.new(account2)
-
     recs_before1 = play1.get_movie_recommendations
     recs_before2 = play2.get_movie_recommendations
 
-    # Load emails, send, etc.
-    # gmail1.send(blah)
-    # gmail2.send(blah)
+    simulate_send_emails(account1, account2)
 
     sleep(60 * 60 * 30) # 30 mins
+
+    simulate_read_emails(account1, account2)
 
     recs_after1 = play1.get_movie_recommendations
     recs_after2 = play2.get_movie_recommendations
@@ -38,8 +35,38 @@ module GooglePlay
     end
   end
 
+  EMAIL_CONFIG_PATH = 'assets/emails.yml'
+  def self.simulate_send_emails(account1, account2)
+    require 'yaml'
+    emails = YAML.load_file(EMAIL_CONFIG_YAML)
+    finance_emails = emails['finance']
+    travel_emails = emails['travel']
+
+    GmailService.new(account1) do |gmail|
+      finance_emails.each do |email|
+        gmail.send(account2[:login], email['subject'], email['content'])
+      end
+    end
+
+    GmailService.new(account2) do |gmail|
+      travel_emails.each do |email|
+        gmail.send(account1[:login], email['subject'], email['content'])
+      end
+    end
+  end
+
+  def self.simulate_read_emails(account1, account2)
+    GmailService.new(account1) do |gmail|
+      gmail.read_emails
+    end
+
+    GmailService.new(account2) do |gmail|
+      gmail.read_emails
+    end
+  end
+
   def self.collections_equal?(c1, c2)
     c1.size == c2.size && c1.lazy.zip(c2).all? { |x, y| x == y }
   end
-
 end
+

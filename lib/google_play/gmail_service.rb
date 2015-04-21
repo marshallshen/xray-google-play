@@ -16,6 +16,10 @@ module GooglePlay
       @gmail.deliver(email)
     end
 
+    def read_emails
+      unread_emails.each {|email| email.mark(:read)}
+    end
+
     def unread_emails
       @gmail.inbox.emails(:unread)
     end
