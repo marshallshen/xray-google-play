@@ -3,8 +3,8 @@ require 'gmail'
 module GooglePlay
   class GmailService
     attr_accessor :gmail
-    def initialize(username, password)
-      @gmail = Gmail.new(username, password)
+    def initialize(account)
+      @gmail = Gmail.new(account[:username], account[:password])
     end
 
     def send(t, s, b)
