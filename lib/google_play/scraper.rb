@@ -4,15 +4,15 @@ require 'yaml'
 class GooglePlayScraper
   include Capybara::DSL
 
-  attr_accessor :google, :account
+  attr_accessor :session, :account
 
-  GOOGLE_PLAY_MOVIE_ENDPOINT = 'https://play.google.com/store/movies'
-  LOGIN_ENDPOINT             = 'https://accounts.google.com/ServiceLogin'
+  MOVIE_ENDPOINT = 'https://play.google.com/store/movies'
+  LOGIN_ENDPOINT = 'https://accounts.google.com/ServiceLogin'
 
   def initialize(account)
     initialize_capybara
     @account = account
-    @google = Capybara::Session.new(:poltergeist)
+    @session = Capybara::Session.new(:poltergeist)
   end
 
   def initialize_capybara
@@ -34,53 +34,50 @@ class GooglePlayScraper
   end
 
   def login!
-    google.visit(LOGIN_ENDPOINT)
+    session.visit(LOGIN_ENDPOINT)
 
-    google.within("form#gaia_loginform") do
-      google.fill_in('Email', with: account[:login])
-      google.fill_in('Passwd', with: account[:passwd])
+    session.within("form#gaia_loginform") do
+      session.fill_in('Email', with: account[:login])
+      session.fill_in('Passwd', with: account[:passwd])
     end
 
-    google.uncheck 'Stay signed in'
-    google.click_on 'Sign in'
+    session.check 'Stay signed in'
+    session.click_on 'Sign in'
   end
 
   class Movie
     attr_accessor :title, :genre, :price
   end
 
-  # TODO: dump movies somewhere
   def get_movie_recommendations
-    google.visit(GOOGLE_PLAY_MOVIE_ENDPOINT)
-
-    sleep(2)
-
-    recommendation_xpath = '//*[@id="body-content"]/div[2]/div/div[4]/div/h1/a[1]'
-    google.find(:xpath, recommendation_xpath).click
-
-    sleep(1)
-
-    parse_movies_from_enclosing_path('details')
+    login!
+    session.visit(MOVIE_ENDPOINT)
+    session.find(:link, "Recommended for You").click
+    screenshot!
+    movies_from_selector('.details')
   end
 
-  # TODO: this doesn't account for pagination
-  def parse_movies_from_enclosing_path path
-    google.all(path).map do |dom|
-      parse_movie_from_dom(dom)
+  def movies_from_selector klass
+    session.all(:css, klass).map do |element|
+      parse_movie_from_element(element)
     end
   end
 
-  def parse_movie_from_dom dom
+  def parse_movie_from_dom element
     Movie.new.tap do |m|
-      m.title = google.find('a title')
-      m.genre = google.find('')
-      m.price = google.find('')
+      m.title = element.find('.title').text
+      m.genre = element.find('.subtitle').text
+      m.price = element.find('.display-price').text
     end
+  end
+
+  def screenshot!
+    session.save_screenshot("#{Time.now}.png", full: true)
   end
 
   def clean!
-    google.driver.clear_cookies
-    google.reset!
+    session.driver.clear_cookies
+    session.reset!
   end
 end
 
