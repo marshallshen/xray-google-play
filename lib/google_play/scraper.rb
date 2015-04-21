@@ -38,7 +38,7 @@ class GooglePlayScraper
 
     session.within("form#gaia_loginform") do
       session.fill_in('Email', with: account[:login])
-      session.fill_in('Passwd', with: account[:passwd])
+      session.fill_in('Passwd', with: account[:password])
     end
 
     session.check 'Stay signed in'
