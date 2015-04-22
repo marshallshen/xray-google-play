@@ -46,9 +46,9 @@ class GooglePlayScraper
 
   def endpoint redirection_page
     if redirection_page.empty?
-      LOGIN_ENDPOINT + '?continue=' + redirection_page
-    else
       LOGIN_ENDPOINT
+    else
+      LOGIN_ENDPOINT + '?continue=' + redirection_page
     end
   end
 
