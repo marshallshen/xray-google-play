@@ -15,7 +15,7 @@ module GooglePlay
 
     simulate_send_emails(account1, account2)
 
-    sleep(60 * 60 * 30) # 30 mins
+    sleep(60 * 30) # 30 mins
 
     simulate_read_emails(account1, account2)
 
@@ -38,7 +38,7 @@ module GooglePlay
   EMAIL_CONFIG_PATH = 'assets/emails.yml'
   def self.simulate_send_emails(account1, account2)
     require 'yaml'
-    emails = YAML.load_file(EMAIL_CONFIG_YAML)
+    emails = YAML.load_file(EMAIL_CONFIG_PATH)
     finance_emails = emails['finance']
     travel_emails = emails['travel']
 
