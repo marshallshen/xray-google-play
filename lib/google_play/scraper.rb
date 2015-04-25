@@ -6,7 +6,7 @@ class GooglePlayScraper
 
   attr_accessor :session, :account
 
-  MOVIE_ENDPOINT = 'https://play.google.com/store/movies'
+  MOVIE_ENDPOINT = 'https://play.google.com/store/movies/category/MOVIE'
   LOGIN_ENDPOINT = 'https://accounts.google.com/ServiceLogin'
 
   def initialize(account)
