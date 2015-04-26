@@ -5,4 +5,9 @@ namespace :xray do
   task :dry_run do
     GooglePlay.run
   end
+
+  desc 'Run a simple email exchange to valid Google Play'
+  task :dry_mail do
+    GooglePlay.dry_emails
+  end
 end

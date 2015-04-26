@@ -3,13 +3,14 @@ require_relative 'google_play/measure.rb'
 require_relative 'google_play/gmail_service.rb'
 require_relative 'google_play/scraper.rb'
 require 'logger'
+require 'byebug'
 
 module GooglePlay
 
   @logger ||= Logger.new(STDOUT)
 
   def self.run
-    account1, account2 = YAML.load_file('assets/accounts.yml')
+    account1, account2, account3 = YAML.load_file('assets/accounts.yml')
 
     play1 = GooglePlay::Scraper.new(account1)
     play2 = GooglePlay::Scraper.new(account2)
@@ -19,10 +20,11 @@ module GooglePlay
     before2 = play2.get_movie_recommendations
 
     @logger.info 'Sending emails'
-    simulate_emails(account1, account2)
+    simulate_emails(account1, account2, account3)
 
     minutes = 30
     @logger.info "Sleeping #{minutes} minutes"
+    sleep 5
     # sleep(60 * minutes)
 
     @logger.info 'Fetching recommendations, after'
@@ -35,24 +37,71 @@ module GooglePlay
   end
 
   EMAIL_CONFIG_PATH = 'assets/emails.yml'
-  def self.simulate_emails(account1, account2)
+  def self.simulate_emails(account1, account2, account3)
     emails = YAML.load_file(EMAIL_CONFIG_PATH)
-    finance_emails = emails['finance']
-    travel_emails = emails['travel']
+    action_movie_emails = emails['action']
+    family_movie_emails = emails['family']
 
-    gmail1 = GmailService.new(account1)
-    gmail2 = GmailService.new(account2)
+    action_movie_fan = GmailService.new(account1)
+    family_movie_fan = GmailService.new(account2)
+    supportive_friend = GmailService.new(account2)
 
-    finance_emails.each do |email|
-      gmail1.send(account2['login'], email['subject'], email['content'])
+    @logger.info 'Sending action emails'
+    action_movie_emails.each do |email|
+      action_movie_fan.send(account3['login'], email['subject'], email['content'])
     end
 
-    travel_emails.each do |email|
-      gmail2.send(account1['login'], email['subject'], email['content'])
+    @logger.info 'Sending family emails'
+    family_movie_emails.each do |email|
+      family_movie_fan.send(account3['login'], email['subject'], email['content'])
     end
 
-    gmail1.read_emails
-    gmail2.read_emails
+    @logger.info 'Support friend reads emails'
+    supportive_friend.read_emails
+
+    @logger.info 'Replying action emails'
+    action_movie_emails.each do |email|
+      supportive_friend.send(account1['login'], email['subject'], email['reply'])
+    end
+
+    @logger.info 'Replying family emails'
+    family_movie_emails.each do |email|
+      supportive_friend.send(account2['login'], email['subject'], email['reply'])
+    end
+  end
+
+  def self.dry_emails
+    account1, account2, account3 = YAML.load_file('assets/accounts.yml')
+    emails = YAML.load_file(EMAIL_CONFIG_PATH)
+    action_movie_emails = emails['test']
+    family_movie_emails = emails['test']
+
+    action_movie_fan = GmailService.new(account1)
+    family_movie_fan = GmailService.new(account2)
+    supportive_friend = GmailService.new(account2)
+
+    @logger.info 'Sending action emails'
+    action_movie_emails.each do |email|
+      action_movie_fan.send(account3['login'], email['subject'], email['content'])
+    end
+
+    @logger.info 'Sending family emails'
+    family_movie_emails.each do |email|
+      family_movie_fan.send(account3['login'], email['subject'], email['content'])
+    end
+
+    @logger.info 'Support friend reads emails'
+    supportive_friend.read_emails
+
+    @logger.info 'Replying action emails'
+    action_movie_emails.each do |email|
+      supportive_friend.send(account1['login'], email['subject'], email['reply'])
+    end
+
+    @logger.info 'Replying family emails'
+    family_movie_emails.each do |email|
+      supportive_friend.send(account2['login'], email['subject'], email['reply'])
+    end
   end
 
   def self.check_variance account, before, after
@@ -66,8 +115,7 @@ module GooglePlay
   end
 
   private
-
-    def self.collections_equal?(c1, c2)
-      c1.size == c2.size && c1.lazy.zip(c2).all? { |x, y| x == y }
-    end
+  def self.collections_equal?(c1, c2)
+    c1.size == c2.size && c1.lazy.zip(c2).all? { |x, y| x == y }
+  end
 end
