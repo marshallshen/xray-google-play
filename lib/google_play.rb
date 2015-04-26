@@ -15,7 +15,7 @@ module GooglePlay
 
     simulate_send_emails(account1, account2)
 
-    sleep(60 * 30) # 30 mins
+  #  sleep(60 * 30) # 30 mins
 
     simulate_read_emails(account1, account2)
 
