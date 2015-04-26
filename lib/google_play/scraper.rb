@@ -1,101 +1,96 @@
 require 'capybara/poltergeist'
 require 'yaml'
+require_relative 'movie.rb'
 
-class GooglePlayScraper
-  include Capybara::DSL
+module GooglePlay
+  class Scraper
+    include Capybara::DSL
 
-  attr_accessor :session, :account
+    attr_accessor :session, :account
 
-  MOVIE_ENDPOINT = 'https://play.google.com/store/movies/category/MOVIE'
-  LOGIN_ENDPOINT = 'https://accounts.google.com/ServiceLogin'
+    MOVIE_ENDPOINT = 'https://play.google.com/store/movies/category/MOVIE'
+    LOGIN_ENDPOINT = 'https://accounts.google.com/ServiceLogin'
 
-  def initialize(account)
-    initialize_capybara
-    @account = account
-    @session = Capybara::Session.new(:poltergeist)
-  end
-
-  def initialize_capybara
-    Capybara.configure do |c|
-      c.run_server = false
-      c.default_driver = :poltergeist
-      c.app_host = 'http://www.google.com'
-      c.default_wait_time = 5
+    def initialize(account)
+      initialize_capybara
+      @account = account
+      @session = Capybara::Session.new(:poltergeist)
     end
 
-    phantom_opts = %w(--debug=no --load-images=no --ignore-ssl-errors=yes --ssl-protocol=TLSv1)
+    def initialize_capybara
+      Capybara.configure do |c|
+        c.run_server = false
+        c.default_driver = :poltergeist
+        c.app_host = 'http://www.google.com'
+        c.default_wait_time = 10
+      end
 
-    Capybara.register_driver :poltergeist do |app|
-      Capybara::Poltergeist::Driver.new(app, phantomjs_options: phantom_opts, debug: false)
-    end
-  end
+      phantom_opts = %w(--debug=no --load-images=no --ignore-ssl-errors=yes --ssl-protocol=TLSv1)
 
-  def login_and_redirect! redirection_page = ''
-    endpoint = endpoint(redirection_page)
-
-    session.visit(endpoint)
-
-    session.within('form#gaia_loginform') do
-      session.fill_in('Email', with: account[:login])
-      session.fill_in('Passwd', with: account[:password])
+      Capybara.register_driver :poltergeist do |app|
+        Capybara::Poltergeist::Driver.new(app, phantomjs_options: phantom_opts, debug: false)
+      end
     end
 
-    session.check 'Stay signed in'
-    session.click_on 'Sign in'
-  end
+    def login_and_redirect! redirection_page = ''
+      endpoint = endpoint(redirection_page)
 
-  def endpoint redirection_page
-    if redirection_page.empty?
-      LOGIN_ENDPOINT
-    else
-      LOGIN_ENDPOINT + '?continue=' + redirection_page
-    end
-  end
+      session.visit(endpoint)
 
-  class Movie
-    attr_accessor :title, :genre, :price
+      session.within('form#gaia_loginform') do
+        session.fill_in('Email', with: account['login']) if session.has_field?('Email')
+        session.fill_in('Passwd', with: account['password'])
+      end
 
-    def ==(o)
-      self.title == o.title && self.genre == o.genre && self.price == o.price
+      session.click_on 'Sign in'
     end
 
-    def hash
-      self.title.hash ^ self.genre.hash ^ self.price.hash
+    def endpoint redirection_page
+      if redirection_page.empty?
+        LOGIN_ENDPOINT
+      else
+        LOGIN_ENDPOINT + '?continue=' + redirection_page
+      end
     end
-  end
 
-  def get_movie_recommendations
-    login_and_redirect!(MOVIE_ENDPOINT) unless logged_in?
-    session.find(:link, 'Recommended for You').click
-    screenshot!
-    movies_from_selector('.details')
-  end
-
-  def movies_from_selector klass
-    session.all(:css, klass).map do |element|
-      parse_movie_from_element(element)
+    def get_movie_recommendations
+      login_and_redirect!(MOVIE_ENDPOINT)
+      sleep 3
+      session.find(:link, 'Recommended for You').click
+      sleep 3
+      movies_from_selector('.details')
     end
-  end
 
-  def logged_in?
-    session.has_link?('Sign in')
-  end
-
-  def parse_movie_from_element element
-    Movie.new.tap do |m|
-      m.title = element.find('.title').text
-      m.genre = element.find('.subtitle').text
-      m.price = element.find('.display-price').text
+    def movies_from_selector klass
+      session.all(:css, klass).map do |element|
+        parse_movie_from_element(element)
+      end
     end
-  end
 
-  def screenshot!
-    session.save_screenshot("#{Time.now}.png", full: true)
-  end
+    def parse_movie_from_element element
+      GooglePlay::Movie.new.tap do |m|
+        m.title = find_text(element, '.title')
+        m.genre = find_text(element, '.subtitle')
+        m.price = find_text(element, '.display-price')
+      end
+    end
 
-  def clean!
-    session.driver.clear_cookies
-    session.reset!
+    def find_text(element, attr)
+      begin
+        element.find(attr).text
+      rescue
+        ''
+      end
+    end
+
+    def screenshot!
+      session.save_screenshot("#{Time.now}.png", full: true)
+    end
+
+    def clean!
+      session.driver.clear_cookies
+      session.reset!
+    end
   end
 end
 
