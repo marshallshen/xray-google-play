@@ -1,10 +1,12 @@
 require 'capybara/poltergeist'
 require 'yaml'
 require_relative 'movie.rb'
+require_relative 'log.rb'
 
 module GooglePlay
   class Scraper
     include Capybara::DSL
+    include GooglePlay::Log
 
     attr_accessor :session, :account
 
@@ -32,8 +34,8 @@ module GooglePlay
       end
     end
 
-    def login_and_redirect! redirection_page = ''
-      endpoint = endpoint(redirection_page)
+    def login_and_redirect! redirection_url = ''
+      endpoint = endpoint(redirection_url)
 
       session.visit(endpoint)
 
@@ -43,6 +45,7 @@ module GooglePlay
       end
 
       session.click_on 'Sign in'
+      screenshot! unless in_expected_url redirection_url
     end
 
     def endpoint redirection_page
@@ -84,7 +87,11 @@ module GooglePlay
     end
 
     def screenshot!
-      session.save_screenshot("#{Time.now}.png", full: true)
+      session.save_screenshot("#{Time.now.asctime}.png", full: true)
+    end
+
+    def in_expected_url expected
+      logger.error "Expected: #{expected} but actual is #{session.current_url}" unless session.current_url == expected
     end
 
     def clean!
