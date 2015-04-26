@@ -4,7 +4,7 @@ module GooglePlay
   class GmailService
     attr_accessor :gmail
     def initialize(account)
-      @gmail = Gmail.new(account[:username], account[:password])
+      @gmail = Gmail.new(account['login'], account['password'])
     end
 
     def send(t, s, b)
