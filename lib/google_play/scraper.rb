@@ -45,7 +45,7 @@ module GooglePlay
       end
 
       session.click_on 'Sign in'
-      screenshot! unless in_expected_url redirection_url
+      check_expected_url redirection_url
     end
 
     def endpoint redirection_page
@@ -90,8 +90,11 @@ module GooglePlay
       session.save_screenshot("#{Time.now.asctime}.png", full: true)
     end
 
-    def in_expected_url expected
-      logger.error "Expected: #{expected} but actual is #{session.current_url}" unless session.current_url == expected
+    def check_expected_url expected
+      unless session.current_url == expected
+        screenshot!
+        logger.error "Expected: #{expected} but actual is #{session.current_url}"
+      end
     end
 
     def clean!
