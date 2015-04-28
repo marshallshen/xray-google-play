@@ -46,34 +46,32 @@ module GooglePlay
         # # sleep(60 * minutes)
       end
     end
+
+    def simulate_emails(account1, email1, account2, email2, account3)
       action_movie_fan  = GmailService.new(account1)
       family_movie_fan  = GmailService.new(account2)
-      supportive_friend = GmailService.new(account2)
+      supportive_friend = GmailService.new(account3)
 
       logger.info 'Sending action emails'
-      action_movie_emails.each do |email|
-        action_movie_fan.send(account3['login'], email['subject'], email['content'])
-      end
+      action_movie_fan.read_emails
+      action_movie_fan.send(account3['login'], email1['subject'], email1['content'])
+      action_movie_fan.logout
 
       logger.info 'Sending family emails'
-      family_movie_emails.each do |email|
-        family_movie_fan.send(account3['login'], email['subject'], email['content'])
-      end
+      family_movie_fan.read_emails
+      family_movie_fan.send(account3['login'], email2['subject'], email2['content'])
+      family_movie_fan.logout
 
       logger.info 'Support friend reads emails'
       supportive_friend.read_emails
-
       logger.info 'Replying action emails'
-      action_movie_emails.each do |email|
-        supportive_friend.send(account1['login'], email['subject'], email['reply'])
-      end
-
+      supportive_friend.send(account1['login'], email1['subject'], email1['reply'])
       logger.info 'Replying family emails'
-      family_movie_emails.each do |email|
-        supportive_friend.send(account2['login'], email['subject'], email['reply'])
-      end
+      supportive_friend.send(account2['login'], email2['subject'], email2['reply'])
+      supportive_friend.logout
     end
 
+    EMAIL_CONFIG_PATH = 'assets/emails.yml'
     def dry_emails
       account1, account2, account3 = YAML.load_file('assets/accounts.yml')
       emails = YAML.load_file(EMAIL_CONFIG_PATH)
