@@ -57,10 +57,13 @@ module GooglePlay
     end
 
     def get_movie_recommendations
+      logger.info "Will go to the movie endpoint for #{account['login']}"
       login_and_redirect!(MOVIE_ENDPOINT)
       sleep 3
+      logger.info 'Will click on Recommended for You'
       session.find(:link, 'Recommended for You').click
       sleep 3
+      logger.info 'Will parse movies'
       movies_from_selector('.details')
     end
 
@@ -87,7 +90,7 @@ module GooglePlay
     end
 
     def screenshot!
-      session.save_screenshot("#{Time.now.asctime}.png", full: true)
+      session.save_screenshot("#{Time.now}.png", full: true)
     end
 
     def check_expected_url expected
