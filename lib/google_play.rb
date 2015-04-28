@@ -14,32 +14,38 @@ module GooglePlay
       play1 = GooglePlay::Scraper.new(account1)
       play2 = GooglePlay::Scraper.new(account2)
 
-      logger.info 'Fetching recommendations, before'
-      before1 = play1.get_movie_recommendations
-      before2 = play2.get_movie_recommendations
-
-      logger.info 'Sending emails'
-      simulate_emails(account1, account2)
-
-      minutes = 30
-      logger.info "Sleeping #{minutes} minutes"
-      # sleep(60 * minutes)
-
-      logger.info 'Fetching recommendations, after'
-      after1 = play1.get_movie_recommendations
-      after2 = play2.get_movie_recommendations
-
-      logger.info 'Checking variance'
-      check_variance account1, before1, after1
-      check_variance account2, before2, after2
-    end
-
-    EMAIL_CONFIG_PATH = 'assets/emails.yml'
-    def simulate_emails(account1, account2, account3)
       emails = YAML.load_file(EMAIL_CONFIG_PATH)
+
       action_movie_emails = emails['action']
       family_movie_emails = emails['family']
 
+      data = Hash.new
+      data['recommendations'] = [[],[]]
+
+      action_movie_emails.zip(family_movie_emails).cycle do |email_pair|
+        logger.info 'Fetching new recommendations'
+        new_recommendations1 = play1.get_movie_recommendations
+        new_recommendations2 = play2.get_movie_recommendations
+
+        last_recommendations = data['recommendations']
+
+        logger.info "Checking variance for account #{account1['login']} against last round"
+        check_variance account1, last_recommendations.first, account1, new_recommendations1
+        logger.info "Checking variance for account #{account2['login']} against last round"
+        check_variance account2, last_recommendations.last, account2, new_recommendations2
+        logger.info 'Checking variance across the two accounts in this round'
+        check_variance account1, new_recommendations1, account2, new_recommendations2
+
+        data['recommendations'] = [new_recommendations1, new_recommendations2]
+
+        logger.info 'Sending emails'
+        simulate_emails(account1, email_pair.first, account2, email_pair.last, account3)
+
+        minutes = 5
+        logger.info "Sleeping #{minutes} minutes"
+        # # sleep(60 * minutes)
+      end
+    end
       action_movie_fan  = GmailService.new(account1)
       family_movie_fan  = GmailService.new(account2)
       supportive_friend = GmailService.new(account2)
