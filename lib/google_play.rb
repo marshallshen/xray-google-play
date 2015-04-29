@@ -106,14 +106,14 @@ module GooglePlay
       end
     end
 
-    def check_variance account, before, after
-      if collections_equal? before, after
-        logger.info "For #{account['login']}, recommendations stayed the same"
+    def check_variance account1, recs1, account2, recs2
+      if collections_equal? recs1, recs2
+        logger.info "For #{account1['login']} vs #{account2['login']}, recommendations stayed the same"
       else
-        logger.info "For #{account['login']}, recommendations varied!"
+        logger.info "For #{account1['login']} vs #{account2['login']}, recommendations varied!"
       end
-      logger.info "Before: #{before.inspect}"
-      logger.info "After: #{after.inspect}"
+      logger.info "Recommendations 1: #{recs1.inspect}"
+      logger.info "Recommendations 2: #{recs2.inspect}"
     end
 
     private
