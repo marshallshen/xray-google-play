@@ -11,9 +11,6 @@ module GooglePlay
     def run
       account1, account2, account3 = YAML.load_file('assets/accounts.yml')
 
-      play1 = GooglePlay::Scraper.new(account1)
-      play2 = GooglePlay::Scraper.new(account2)
-
       emails = YAML.load_file(EMAIL_CONFIG_PATH)
 
       action_movie_emails = emails['action']
@@ -24,6 +21,8 @@ module GooglePlay
 
       action_movie_emails.zip(family_movie_emails).cycle do |email_pair|
         logger.info 'Fetching new recommendations'
+        play1 = GooglePlay::Scraper.new(account1)
+        play2 = GooglePlay::Scraper.new(account2)
         new_recommendations1 = play1.get_movie_recommendations
         new_recommendations2 = play2.get_movie_recommendations
 
