@@ -12,37 +12,82 @@ module GooglePlay
       account1, account2, account3 = YAML.load_file('assets/accounts.yml')
 
       emails = YAML.load_file(EMAIL_CONFIG_PATH)
-
       action_movie_emails = emails['action']
       family_movie_emails = emails['family']
 
+      # for holding the recommendations
       data = Hash.new
       data['recommendations'] = [[],[]]
 
+      # the round number
+      round = 0
+
       action_movie_emails.zip(family_movie_emails).cycle do |email_pair|
         logger.info 'Fetching new recommendations'
+
         play1 = GooglePlay::Scraper.new(account1)
         play2 = GooglePlay::Scraper.new(account2)
+
         new_recommendations1 = play1.get_movie_recommendations
         new_recommendations2 = play2.get_movie_recommendations
 
         last_recommendations = data['recommendations']
 
-        logger.info "Checking variance for account #{account1['login']} against last round"
-        check_variance account1, last_recommendations.first, account1, new_recommendations1
-        logger.info "Checking variance for account #{account2['login']} against last round"
-        check_variance account2, last_recommendations.last, account2, new_recommendations2
-        logger.info 'Checking variance across the two accounts in this round'
-        check_variance account1, new_recommendations1, account2, new_recommendations2
+        File.open('recommendations.log', 'a') do |file|
+          file.puts "Round # #{round}"
+
+          logger.info "Checking variance for account #{account1['login']} against last round"
+          if collections_equal? last_recommendations.first, new_recommendations1
+            str = "#{account1['login']} compared to last round: SAME"
+            logger.info str
+            file.puts str
+          else
+            str = "#{account1['login']} compared to last round: DIFFERENT"
+            logger.info str
+            file.puts str
+          end
+
+          logger.info "Checking variance for account #{account2['login']} against last round"
+          if collections_equal? last_recommendations.last, new_recommendations2
+            str = "#{account2['login']} compared to last round: SAME"
+            logger.info str
+            file.puts str
+          else
+            str = "#{account2['login']} compared to last round: DIFFERENT"
+            logger.info str
+            file.puts str
+          end
+
+          logger.info 'Checking variance across the two accounts in this round'
+          if collections_equal? new_recommendations1, new_recommendations2
+            str = "#{account1['login']} compared to #{account2['login']} in this round: SAME"
+            logger.info str
+            file.puts str
+          else
+            str = "#{account1['login']} compared to #{account2['login']} in this round: DIFFERENT"
+            logger.info str
+            file.puts str
+          end
+
+          r1 = "#{account1['login']}: #{new_recommendations1.join(', ')}"
+          r2 = "#{account2['login']}: #{new_recommendations2.join(', ')}"
+          logger.info r1
+          file.puts r1
+          logger.info r2
+          file.puts r2
+          logger.info '*' * 60
+          file.puts '*' * 60
+        end
 
         data['recommendations'] = [new_recommendations1, new_recommendations2]
 
         logger.info 'Sending emails'
         simulate_emails(account1, email_pair.first, account2, email_pair.last, account3)
 
-        minutes = 5
+        minutes = 30
         logger.info "Sleeping #{minutes} minutes"
-        # # sleep(60 * minutes)
+        sleep(60 * minutes)
+        round += 1
       end
     end
 
@@ -103,16 +148,6 @@ module GooglePlay
       family_movie_emails.each do |email|
         supportive_friend.send(account2['login'], email['subject'], email['reply'])
       end
-    end
-
-    def check_variance account1, recs1, account2, recs2
-      if collections_equal? recs1, recs2
-        logger.info "For #{account1['login']} vs #{account2['login']}, recommendations stayed the same"
-      else
-        logger.info "For #{account1['login']} vs #{account2['login']}, recommendations varied!"
-      end
-      logger.info "Recommendations 1: #{recs1.inspect}"
-      logger.info "Recommendations 2: #{recs2.inspect}"
     end
 
     private

@@ -9,5 +9,9 @@ module GooglePlay
     def hash
       self.title.hash ^ self.genre.hash ^ self.price.hash
     end
+
+    def to_s
+      "Title: #{title} - Genre: #{genre} - Price: #{price}"
+    end
   end
 end
