@@ -1,5 +1,5 @@
-xray:
+movies:
   build: .
-  command: rake xray:run_experiment
+  command: rake xray:movies_experiment
   volumes:
     - .:/xray
