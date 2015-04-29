@@ -1,0 +1,5 @@
+xray:
+  build: .
+  command: rake xray:run_experiment
+  volumes:
+    - .:/xray

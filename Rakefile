@@ -2,7 +2,7 @@ require_relative 'lib/google_play'
 
 namespace :xray do
   desc 'Run a simple experiment to valid Google Play'
-  task :dry_run do
+  task :run_experiment do
     GooglePlay.run
   end
 
