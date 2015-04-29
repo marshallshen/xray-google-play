@@ -1,7 +1,7 @@
 require_relative 'google_play/version.rb'
 require_relative 'google_play/measure.rb'
 require_relative 'google_play/gmail_service.rb'
-require_relative 'google_play/scraper.rb'
+require_relative 'google_play/play_scraper.rb'
 require_relative 'google_play/log.rb'
 
 module GooglePlay
@@ -25,8 +25,8 @@ module GooglePlay
       action_movie_emails.zip(family_movie_emails).cycle do |email_pair|
         logger.info 'Fetching new recommendations'
 
-        play1 = GooglePlay::Scraper.new(account1)
-        play2 = GooglePlay::Scraper.new(account2)
+        play1 = GooglePlay::PlayScraper.new(account1)
+        play2 = GooglePlay::PlayScraper.new(account2)
 
         new_recommendations1 = play1.get_movie_recommendations
         new_recommendations2 = play2.get_movie_recommendations
