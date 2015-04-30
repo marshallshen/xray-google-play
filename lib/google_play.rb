@@ -7,6 +7,8 @@ module GooglePlay
   class << self
     include GooglePlay::Log
 
+    LOG_FILE = File.expand_path('../../recommendations.log', __FILE__)
+
     def run
       account1, account2, account3 = YAML.load_file('assets/accounts.yml')
 
@@ -19,7 +21,7 @@ module GooglePlay
       data['recommendations'] = [[],[]]
 
       # the round number
-      round = 0
+      round = last_round_in_log(LOG_FILE)
 
       action_movie_emails.zip(family_movie_emails).cycle do |email_pair|
         logger.info 'Fetching new recommendations'
@@ -32,7 +34,7 @@ module GooglePlay
 
         last_recommendations = data['recommendations']
 
-        File.open('recommendations.log', 'a') do |file|
+        File.open(LOG_FILE, 'a') do |file|
           file.puts "Round # #{round}"
 
           logger.info "Checking variance for account #{account1['login']} against last round"
@@ -153,6 +155,10 @@ module GooglePlay
 
     def collections_equal?(c1, c2)
       c1.size == c2.size && c1.lazy.zip(c2).all? { |x, y| x == y }
+    end
+
+    def last_round_in_log file
+      `tail -n 10 #{file} | grep 'Round #'`.strip.scan(/[0-9]+$/).last.to_i
     end
   end
 end
