@@ -2,6 +2,7 @@ require_relative 'google_play/version.rb'
 require_relative 'google_play/gmail_service.rb'
 require_relative 'google_play/play_scraper.rb'
 require_relative 'google_play/log.rb'
+require 'yaml'
 
 module GooglePlay
   class << self
