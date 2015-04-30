@@ -21,8 +21,7 @@ module GooglePlay
       data = Hash.new
       data['recommendations'] = [[],[]]
 
-      # the next round number
-      round = last_round_in_log(LOG_FILE) + 1
+      next_round = last_round_in_log(LOG_FILE) + 1
 
       action_movie_emails.zip(family_movie_emails).cycle do |email_pair|
         email1 = email_pair.first
@@ -39,7 +38,7 @@ module GooglePlay
         last_recommendations = data['recommendations']
 
         File.open(LOG_FILE, 'a') do |file|
-          file.puts "Round # #{round}"
+          file.puts "Round # #{next_round}"
           file.puts "#{Time.now}"
 
           logger.info "Checking variance for account #{account1['login']} against last round"
@@ -84,7 +83,7 @@ module GooglePlay
             file.puts str
           end
 
-          if acc1_variance || acc2_variance || cross_acc_variance
+          unless acc1_variance || acc2_variance || cross_acc_variance
             r1 = "#{account1['login']}: #{new_recommendations1.join(', ')}"
             r2 = "#{account2['login']}: #{new_recommendations2.join(', ')}"
             logger.info r1
@@ -104,7 +103,7 @@ module GooglePlay
         minutes = 30
         logger.info "Sleeping #{minutes} minutes"
         sleep(60 * minutes)
-        round += 1
+        next_round += 1
       end
     end
 
