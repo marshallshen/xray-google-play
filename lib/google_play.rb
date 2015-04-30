@@ -24,6 +24,9 @@ module GooglePlay
       round = last_round_in_log(LOG_FILE)
 
       action_movie_emails.zip(family_movie_emails).cycle do |email_pair|
+        email1 = email_pair.first
+        email2 = email_pair.last
+
         logger.info 'Fetching new recommendations'
 
         play1 = GooglePlay::PlayScraper.new(account1)
@@ -36,31 +39,41 @@ module GooglePlay
 
         File.open(LOG_FILE, 'a') do |file|
           file.puts "Round # #{round}"
+          file.puts "#{Time.now}"
 
           logger.info "Checking variance for account #{account1['login']} against last round"
-          if collections_equal? last_recommendations.first, new_recommendations1
-            str = "#{account1['login']} compared to last round: SAME"
+          file.puts "Account: #{account1['login']}"
+
+          acc1_variance = collections_equal? last_recommendations.first, new_recommendations1
+          if acc1_variance
+            str = '  Compared to last round: SAME'
             logger.info str
             file.puts str
           else
-            str = "#{account1['login']} compared to last round: DIFFERENT"
+            str = '  Compared to last round: DIFFERENT'
             logger.info str
             file.puts str
           end
+          file.puts "  Will now send email about #{email1['subject']}"
 
           logger.info "Checking variance for account #{account2['login']} against last round"
-          if collections_equal? last_recommendations.last, new_recommendations2
-            str = "#{account2['login']} compared to last round: SAME"
+          file.puts "Account: #{account2['login']}"
+
+          acc2_variance = collections_equal? last_recommendations.last, new_recommendations2
+          if acc2_variance
+            str = '  Compared to last round: SAME'
             logger.info str
             file.puts str
           else
-            str = "#{account2['login']} compared to last round: DIFFERENT"
+            str = '  Compared to last round: DIFFERENT'
             logger.info str
             file.puts str
           end
+          file.puts "  Will now send email about #{email2['subject']}"
 
           logger.info 'Checking variance across the two accounts in this round'
-          if collections_equal? new_recommendations1, new_recommendations2
+          cross_acc_variance = collections_equal? new_recommendations1, new_recommendations2
+          if cross_acc_variance
             str = "#{account1['login']} compared to #{account2['login']} in this round: SAME"
             logger.info str
             file.puts str
@@ -70,20 +83,22 @@ module GooglePlay
             file.puts str
           end
 
-          r1 = "#{account1['login']}: #{new_recommendations1.join(', ')}"
-          r2 = "#{account2['login']}: #{new_recommendations2.join(', ')}"
-          logger.info r1
-          file.puts r1
-          logger.info r2
-          file.puts r2
-          logger.info '*' * 60
-          file.puts '*' * 60
+          if acc1_variance || acc2_variance || cross_acc_variance
+            r1 = "#{account1['login']}: #{new_recommendations1.join(', ')}"
+            r2 = "#{account2['login']}: #{new_recommendations2.join(', ')}"
+            logger.info r1
+            file.puts r1
+            logger.info r2
+            file.puts r2
+          end
+          logger.info '*' * 81
+          file.puts '*' * 81
         end
 
         data['recommendations'] = [new_recommendations1, new_recommendations2]
 
         logger.info 'Sending emails'
-        simulate_emails(account1, email_pair.first, account2, email_pair.last, account3)
+        simulate_emails(account1, email1, account2, email2, account3)
 
         minutes = 30
         logger.info "Sleeping #{minutes} minutes"
