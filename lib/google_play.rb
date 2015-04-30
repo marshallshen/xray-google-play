@@ -20,8 +20,8 @@ module GooglePlay
       data = Hash.new
       data['recommendations'] = [[],[]]
 
-      # the round number
-      round = last_round_in_log(LOG_FILE)
+      # the next round number
+      round = last_round_in_log(LOG_FILE) + 1
 
       action_movie_emails.zip(family_movie_emails).cycle do |email_pair|
         email1 = email_pair.first
@@ -173,7 +173,7 @@ module GooglePlay
     end
 
     def last_round_in_log file
-      `tail -n 10 #{file} | grep 'Round #'`.strip.scan(/[0-9]+$/).last.to_i
+      `tail -n 20 #{file} | grep 'Round #'`.strip.scan(/[0-9]+$/).last.to_i
     end
   end
 end
