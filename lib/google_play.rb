@@ -44,8 +44,8 @@ module GooglePlay
           logger.info "Checking variance for account #{account1['login']} against last round"
           file.puts "Account: #{account1['login']}"
 
-          acc1_variance = collections_equal? last_recommendations.first, new_recommendations1
-          if acc1_variance
+          acc1_equal_last = collections_equal? last_recommendations.first, new_recommendations1
+          if acc1_equal_last
             str = '  Compared to last round: SAME'
             logger.info str
             file.puts str
@@ -59,8 +59,8 @@ module GooglePlay
           logger.info "Checking variance for account #{account2['login']} against last round"
           file.puts "Account: #{account2['login']}"
 
-          acc2_variance = collections_equal? last_recommendations.last, new_recommendations2
-          if acc2_variance
+          acc2_equal_last = collections_equal? last_recommendations.last, new_recommendations2
+          if acc2_equal_last
             str = '  Compared to last round: SAME'
             logger.info str
             file.puts str
@@ -72,8 +72,8 @@ module GooglePlay
           file.puts "  Will now send email about #{email2['subject']}"
 
           logger.info 'Checking variance across the two accounts in this round'
-          cross_acc_variance = collections_equal? new_recommendations1, new_recommendations2
-          if cross_acc_variance
+          cross_acc_equal_current = collections_equal? new_recommendations1, new_recommendations2
+          if cross_acc_equal_current
             str = "#{account1['login']} compared to #{account2['login']} in this round: SAME"
             logger.info str
             file.puts str
@@ -83,7 +83,7 @@ module GooglePlay
             file.puts str
           end
 
-          unless acc1_variance || acc2_variance || cross_acc_variance
+          unless acc1_equal_last && acc2_equal_last && cross_acc_equal_current
             r1 = "#{account1['login']}: #{new_recommendations1.join(', ')}"
             r2 = "#{account2['login']}: #{new_recommendations2.join(', ')}"
             logger.info r1
