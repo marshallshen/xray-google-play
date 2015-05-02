@@ -20,6 +20,186 @@ action:
     subject: Sin City 2
     content: Let us go see Sin City 2 by Robert Rodriguez!
     reply: Sounds good! Let us go see Sin City 2 by Robert Rodriguez!
+  - id: 6
+    subject: The Equalizer
+    content: Let us go see The Equalizer by Antoine Fuqua!
+    reply: Sounds good! Let us go see The Equalizer by Antoine Fuqua!
+  - id: 7
+    subject: Zero Tolerance
+    content: Let us go see Zero Tolerance by Wych Kaosayananda!
+    reply: Sounds good! Let us go see Zero Tolerance by Wych Kaosayananda!
+  - id: 8
+    subject: Non-Stop 
+    content: Let us go see Non-Stop  by Jaume Collet-Serra!
+    reply: Sounds good! Let us go see Non-Stop  by Jaume Collet-Serra!
+  - id: 9
+    subject: Taken 3
+    content: Let us go see Taken 3 by Olivier Megaton!
+    reply: Sounds good! Let us go see Taken 3 by Olivier Megaton!
+  - id: 10
+    subject: The Gunman 
+    content: Let us go see The Gunman by Pierre Morel!
+    reply: Sounds good! Let us go see The Gunman by Pierre Morel!
+  - id: 11
+    subject: Avengers Age of Ultron
+    content: Let us go see Avengers Age of Ultron by Joss Whedon!
+    reply: Sounds good! Let us go see Avengers Age of Ultron by Joss Whedon!
+  - id: 12
+    subject: Terminator Genisys
+    content: Let us go see Terminator Genisys by Alan Taylor!
+    reply: Sounds good! Let us go see Terminator Genisys by Alan Taylor!
+  - id: 13
+    subject: Mad Max Fury Road
+    content: Let us go see Mad Max Fury Road by George Miller!
+    reply: Sounds good! Let us go see Mad Max Fury Road by George Miller!
+  - id: 14
+    subject: Jurassic World
+    content: Let us go see Jurassic World by Colin Trevorrow!
+    reply: Sounds good! Let us go see Jurassic World by Colin Trevorrow!
+  - id: 15
+    subject: Guardians of the Galaxy
+    content: Let us go see Guardians of the Galaxy by James Gunn!
+    reply: Sounds good! Let us go see Guardians of the Galaxy by James Gunn!
+  - id: 16
+    subject: X-Men: Days of Future Past
+    content: Let us go see X-Men: Days of Future Past by Bryan Singer!
+    reply: Sounds good! Let us go see X-Men: Days of Future Past by Bryan Singer!
+  - id: 17
+    subject: Captain America: The Winter Soldier
+    content: Let us go see Captain America: The Winter Soldier by Anthony Russo, Joe Russo!
+    reply: Sounds good! Let us go see Captain America: The Winter Soldier by Anthony Russo, Joe Russo!
+  - id: 18
+    subject: Edge of Tomorrow
+    content: Let us go see Edge of Tomorrow by Doug Liman!
+    reply: Sounds good! Let us go see Edge of Tomorrow by Doug Liman!
+  - id: 19
+    subject: Dawn of the Planet of the Apes
+    content: Let us go see Dawn of the Planet of the Apes by Matt Reeves!
+    reply: Sounds good! Let us go see Dawn of the Planet of the Apes by Matt Reeves!
+  - id: 20
+    subject: How to Train Your Dragon 2
+    content: Let us go see How to Train Your Dragon 2 by Dean DeBlois!
+    reply: Sounds good! Let us go see How to Train Your Dragon 2 by Dean DeBlois!
+  - id: 21
+    subject: The Amazing Spider-Man 2
+    content: Let us go see The Amazing Spider-Man 2 by Marc Webb!
+    reply: Sounds good! Let us go see The Amazing Spider-Man 2 by Marc Webb!
+  - id: 22
+    subject: Fury
+    content: Let us go see Fury by David Ayer!
+    reply: Sounds good! Let us go see Fury by David Ayer!
+  - id: 23
+    subject: Divergent
+    content: Let us go see Divergent by Neil Burger!
+    reply: Sounds good! Let us go see Divergent by Neil Burger!
+  - id: 24
+    subject: Maleficent
+    content: Let us go see Maleficent by Robert Stromberg!
+    reply: Sounds good! Let us go see Maleficent by Robert Stromberg!
+  - id: 25
+    subject: 22 Jump Street
+    content: Let us go see 22 Jump Street by Phil Lord, Christopher Miller!
+    reply: Sounds good! Let us go see 22 Jump Street by Phil Lord, Christopher Miller!
+  - id: 26
+    subject: Godzilla
+    content: Let us go see Godzilla by Gareth Edwards!
+    reply: Sounds good! Let us go see Godzilla by Gareth Edwards!
+  - id: 27
+    subject: Non-Stop
+    content: Let us go see Non-Stop by Jaume Collet-Serra!
+    reply: Sounds good! Let us go see Non-Stop by Jaume Collet-Serra!
+  - id: 28
+    subject: The Maze Runner
+    content: Let us go see The Maze Runner by Wes Ball!
+    reply: Sounds good! Let us go see The Maze Runner by Wes Ball!
+  - id: 29
+    subject: Lucy
+    content: Let us go see Lucy by Luc Besson!
+    reply: Sounds good! Let us go see Lucy by Luc Besson!
+  - id: 30
+    subject: Redirected
+    content: Let us go see Redirected by Emilis Velyvis!
+    reply: Sounds good! Let us go see Redirected by Emilis Velyvis!
+  - id: 31
+    subject: Big Hero 6
+    content: Let us go see Big Hero 6 by Don Hall, Chris Williams!
+    reply: Sounds good! Let us go see Big Hero 6 by Don Hall, Chris Williams!
+  - id: 32
+    subject: 300: Rise of an Empire
+    content: Let us go see 300: Rise of an Empire by Noam Murro!
+    reply: Sounds good! Let us go see 300: Rise of an Empire by Noam Murro!
+  - id: 33
+    subject: Need for Speed
+    content: Let us go see Need for Speed by Scott Waugh!
+    reply: Sounds good! Let us go see Need for Speed by Scott Waugh!
+  - id: 34
+    subject: RoboCop
+    content: Let us go see RoboCop by José Padilha!
+    reply: Sounds good! Let us go see RoboCop by José Padilha!
+  - id: 35
+    subject: Queen of the Mountains
+    content: Let us go see Queen of the Mountains by Sadyk Sher-Niyaz!
+    reply: Sounds good! Let us go see Queen of the Mountains by Sadyk Sher-Niyaz!
+  - id: 36
+    subject: 3 Days to Kill
+    content: Let us go see 3 Days to Kill by McG!
+    reply: Sounds good! Let us go see 3 Days to Kill by McG!
+  - id: 37
+    subject: Ride Along
+    content: Let us go see Ride Along by Tim Story!
+    reply: Sounds good! Let us go see Ride Along by Tim Story!
+  - id: 38
+    subject: Pompeii
+    content: Let us go see Pompeii by Paul W.S. Anderson!
+    reply: Sounds good! Let us go see Pompeii by Paul W.S. Anderson!
+  - id: 39
+    subject: Into the Storm
+    content: Let us go see Into the Storm by Steven Quale!
+    reply: Sounds good! Let us go see Into the Storm by Steven Quale!
+  - id: 40
+    subject: The November Man
+    content: Let us go see The November Man by Roger Donaldson!
+    reply: Sounds good! Let us go see The November Man by Roger Donaldson!
+  - id: 41
+    subject: The Guest
+    content: Let us go see The Guest by Adam Wingard!
+    reply: Sounds good! Let us go see The Guest by Adam Wingard!
+  - id: 42
+    subject: Sabotage
+    content: Let us go see Sabotage by David Ayer!
+    reply: Sounds good! Let us go see Sabotage by David Ayer!
+  - id: 43
+    subject: I, Frankenstein
+    content: Let us go see I, Frankenstein by Stuart Beattie!
+    reply: Sounds good! Let us go see I, Frankenstein by Stuart Beattie!
+  - id: 44
+    subject: Vampire Academy
+    content: Let us go see Vampire Academy by Mark Waters!
+    reply: Sounds good! Let us go see Vampire Academy by Mark Waters!
+  - id: 45
+    subject: Brick Mansions
+    content: Let us go see Brick Mansions by Camille Delamarre!
+    reply: Sounds good! Let us go see Brick Mansions by Camille Delamarre!
+  - id: 46
+    subject: 71
+    content: Let us go see 71 by Yann Demange!
+    reply: Sounds good! Let us go see 71 by Yann Demange!
+  - id: 47
+    subject: Stretch
+    content: Let us go see Stretch by Joe Carnahan!
+    reply: Sounds good! Let us go see Stretch by Joe Carnahan!
+  - id: 48
+    subject: Sinbad: The Fifth Voyage
+    content: Let us go see Sinbad: The Fifth Voyage by Shahin Sean Solimon!
+    reply: Sounds good! Let us go see Sinbad: The Fifth Voyage by Shahin Sean Solimon!
+  - id: 49
+    subject: Appleseed Alpha
+    content: Let us go see Appleseed Alpha by Shinji Aramaki!
+    reply: Sounds good! Let us go see Appleseed Alpha by Shinji Aramaki!
+  - id: 50
+    subject: The Legend of Hercules
+    content: Let us go see The Legend of Hercules by Renny Harlin!
+    reply: Sounds good! Let us go see The Legend of Hercules by Renny Harlin!
 
 family:
   - id: 1
