@@ -222,6 +222,187 @@ family:
     subject: Rio 2
     content: Let us go see Rio 2 by Carlos Saldanha!
     reply: Sounds good! Let us go see Sin City 2 by Carlos Saldanha!
+  - id: 6
+    subject: The Lego Movie
+    content: Let us go see The Lego Movie by Phil Lord, Christopher Miller!
+    reply: Sounds good! Let us go see The Lego Movie by Phil Lord, Christopher Miller!
+  - id: 7
+    subject: How to Train Your Dragon 2
+    content: Let us go see How to Train Your Dragon 2 by Dean DeBlois!
+    reply: Sounds good! Let us go see How to Train Your Dragon 2 by Dean DeBlois!
+  - id: 8
+    subject: Maleficent
+    content: Let us go see Maleficent by Robert Stromberg!
+    reply: Sounds good! Let us go see Maleficent by Robert Stromberg!
+  - id: 9
+    subject: Muppets Most Wanted
+    content: Let us go see Muppets Most Wanted by James Bobin!
+    reply: Sounds good! Let us go see Muppets Most Wanted by James Bobin!
+  - id: 10
+    subject: The Book of Life
+    content: Let us go see The Book of Life by Jorge R. Gutierrez!
+    reply: Sounds good! Let us go see The Book of Life by Jorge R. Gutierrez!
+  - id: 11
+    subject: The Boxtrolls
+    content: Let us go see The Boxtrolls by Graham Annable, Anthony Stacchi!
+    reply: Sounds good! Let us go see The Boxtrolls by Graham Annable, Anthony Stacchi!
+  - id: 12
+    subject: Penguins of Madagascar
+    content: Let us go see Penguins of Madagascar by Eric Darnell, Simon J. Smith!
+    reply: Sounds good! Let us go see Penguins of Madagascar by Eric Darnell, Simon J. Smith!
+  - id: 13
+    subject: The Nut Job
+    content: Let us go see The Nut Job by Peter Lepeniotis!
+    reply: Sounds good! Let us go see The Nut Job by Peter Lepeniotis!
+  - id: 14
+    subject: Alexander and the Terrible, Horrible, No Good, Very Bad Day
+    content: Let us go see Alexander and the Terrible, Horrible, No Good, Very Bad Day by Miguel Arteta!
+    reply: Sounds good! Let us go see Alexander and the Terrible, Horrible, No Good, Very Bad Day by Miguel Arteta!
+  - id: 15
+    subject: Earth to Echo
+    content: Let us go see Earth to Echo by Dave Green!
+    reply: Sounds good! Let us go see Earth to Echo by Dave Green!
+  - id: 16
+    subject: Paddington
+    content: Let us go see Paddington by Paul King!
+    reply: Sounds good! Let us go see Paddington by Paul King!
+  - id: 17
+    subject: Planes: Fire & Rescue
+    content: Let us go see Planes: Fire & Rescue by Roberts Gannaway!
+    reply: Sounds good! Let us go see Planes: Fire & Rescue by Roberts Gannaway!
+  - id: 18
+    subject: Mitt
+    content: Let us go see Mitt by Greg Whiteley!
+    reply: Sounds good! Let us go see Mitt by Greg Whiteley!
+  - id: 19
+    subject: Dolphin Tale 2
+    content: Let us go see Dolphin Tale 2 by Charles Martin Smith!
+    reply: Sounds good! Let us go see Dolphin Tale 2 by Charles Martin Smith!
+  - id: 20
+    subject: Jamesy Boy
+    content: Let us go see Jamesy Boy by Trevor White!
+    reply: Sounds good! Let us go see Jamesy Boy by Trevor White!
+  - id: 21
+    subject: My Little Pony: Equestria Girls - Rainbow Rocks
+    content: Let us go see My Little Pony: Equestria Girls - Rainbow Rocks by Jayson Thiessen, Ishi Rudell!
+    reply: Sounds good! Let us go see My Little Pony: Equestria Girls - Rainbow Rocks by Jayson Thiessen, Ishi Rudell!
+  - id: 22
+    subject: Cloud 9
+    content: Let us go see Cloud 9 by Paul Hoen!
+    reply: Sounds good! Let us go see Cloud 9 by Paul Hoen!
+  - id: 23
+    subject: Rich Hill
+    content: Let us go see Rich Hill by !
+    reply: Sounds good! Let us go see Rich Hill by !
+  - id: 24
+    subject: Mitt
+    content: Let us go see Mitt by Greg Whiteley!
+    reply: Sounds good! Let us go see Mitt by Greg Whiteley!
+  - id: 25
+    subject: Dolphin Tale 2
+    content: Let us go see Dolphin Tale 2 by Charles Martin Smith!
+    reply: Sounds good! Let us go see Dolphin Tale 2 by Charles Martin Smith!
+  - id: 26
+    subject: Jamesy Boy
+    content: Let us go see Jamesy Boy by Trevor White!
+    reply: Sounds good! Let us go see Jamesy Boy by Trevor White!
+  - id: 27
+    subject: My Little Pony: Equestria Girls - Rainbow Rocks
+    content: Let us go see My Little Pony: Equestria Girls - Rainbow Rocks by Jayson Thiessen, Ishi Rudell!
+    reply: Sounds good! Let us go see My Little Pony: Equestria Girls - Rainbow Rocks by Jayson Thiessen, Ishi Rudell!
+  - id: 28
+    subject: Cloud 9
+    content: Let us go see Cloud 9 by Paul Hoen!
+    reply: Sounds good! Let us go see Cloud 9 by Paul Hoen!
+  - id: 29
+    subject: Rich Hill
+    content: Let us go see Rich Hill by !
+    reply: Sounds good! Let us go see Rich Hill by !
+  - id: 30
+    subject: Dragon Nest: Warriors' Dawn
+    content: Let us go see Dragon Nest: Warriors' Dawn by Yuefeng Song!
+    reply: Sounds good! Let us go see Dragon Nest: Warriors' Dawn by Yuefeng Song!
+  - id: 31
+    subject: Song of the Sea
+    content: Let us go see Song of the Sea by Tomm Moore!
+    reply: Sounds good! Let us go see Song of the Sea by Tomm Moore!
+  - id: 32
+    subject: Taking My Parents to Burning Man
+    content: Let us go see Taking My Parents to Burning Man by Joel Ashton McCarthy, Bryant H. Boesen!
+    reply: Sounds good! Let us go see Taking My Parents to Burning Man by Joel Ashton McCarthy, Bryant H. Boesen!
+  - id: 33
+    subject: Island of Lemurs: Madagascar
+    content: Let us go see Island of Lemurs: Madagascar by David Douglas!
+    reply: Sounds good! Let us go see Island of Lemurs: Madagascar by David Douglas!
+  - id: 34
+    subject: Ivory Tower
+    content: Let us go see Ivory Tower by Andrew Rossi!
+    reply: Sounds good! Let us go see Ivory Tower by Andrew Rossi!
+  - id: 35
+    subject: Suck it Up Buttercup
+    content: Let us go see Suck it Up Buttercup by Malindi Fickle!
+    reply: Sounds good! Let us go see Suck it Up Buttercup by Malindi Fickle!
+  - id: 36
+    subject: The Current
+    content: Let us go see The Current by Nikita Zubarev!
+    reply: Sounds good! Let us go see The Current by Nikita Zubarev!
+  - id: 37
+    subject: Glen Campbell: I'll Be Me
+    content: Let us go see Glen Campbell: I'll Be Me by James Keach!
+    reply: Sounds good! Let us go see Glen Campbell: I'll Be Me by James Keach!
+  - id: 38
+    subject: How to Build a Better Boy
+    content: Let us go see How to Build a Better Boy by Paul Hoen!
+    reply: Sounds good! Let us go see How to Build a Better Boy by Paul Hoen!
+  - id: 39
+    subject: Black Beauty Breed
+    content: Let us go see Black Beauty Breed by !
+    reply: Sounds good! Let us go see Black Beauty Breed by !
+  - id: 40
+    subject: As Dreamers Do
+    content: Let us go see As Dreamers Do by Logan Sekulow!
+    reply: Sounds good! Let us go see As Dreamers Do by Logan Sekulow!
+  - id: 41
+    subject: One Starry Christmas
+    content: Let us go see One Starry Christmas by John Bradshaw!
+    reply: Sounds good! Let us go see One Starry Christmas by John Bradshaw!
+  - id: 42
+    subject: Angels and Ornaments
+    content: Let us go see Angels and Ornaments by Alan Goluboff!
+    reply: Sounds good! Let us go see Angels and Ornaments by Alan Goluboff!
+  - id: 43
+    subject: The Town That Came A-Courtin'
+    content: Let us go see The Town That Came A-Courtin' by David Winning!
+    reply: Sounds good! Let us go see The Town That Came A-Courtin' by David Winning!
+  - id: 44
+    subject: Scooby-Doo! Frankencreepy
+    content: Let us go see Scooby-Doo! Frankencreepy by !
+    reply: Sounds good! Let us go see Scooby-Doo! Frankencreepy by !
+  - id: 45
+    subject: Match
+    content: Let us go see Match by Stephen Belber!
+    reply: Sounds good! Let us go see Match by Stephen Belber!
+  - id: 46
+    subject: Life's Essentials with Ruby Dee
+    content: Let us go see Life's Essentials with Ruby Dee by Muta'Ali Muhammad!
+    reply: Sounds good! Let us go see Life's Essentials with Ruby Dee by Muta'Ali Muhammad!
+  - id: 47
+    subject: One Last Hug: Three Days at Grief Camp
+    content: Let us go see One Last Hug: Three Days at Grief Camp by !
+    reply: Sounds good! Let us go see One Last Hug: Three Days at Grief Camp by !
+  - id: 48
+    subject: Advanced Style
+    content: Let us go see Advanced Style by Lina Plioplyte!
+    reply: Sounds good! Let us go see Advanced Style by Lina Plioplyte!
+  - id: 49
+    subject: Under the Blood-Red Sun
+    content: Let us go see Under the Blood-Red Sun by Tim Savage!
+    reply: Sounds good! Let us go see Under the Blood-Red Sun by Tim Savage!
+  - id: 50
+    subject: World Famous Kid Detective
+    content: Let us go see World Famous Kid Detective by Tim Kelly!
+    reply: Sounds good! Let us go see World Famous Kid Detective by Tim Kelly!
+
 test:
   - id: 1
     subject: Check
