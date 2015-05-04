@@ -61,13 +61,13 @@ action:
     content: Let us go see Guardians of the Galaxy by James Gunn!
     reply: Sounds good! Let us go see Guardians of the Galaxy by James Gunn!
   - id: 16
-    subject: X-Men: Days of Future Past
-    content: Let us go see X-Men: Days of Future Past by Bryan Singer!
-    reply: Sounds good! Let us go see X-Men: Days of Future Past by Bryan Singer!
+    subject: X-Men Days of Future Past
+    content: Let us go see X-Men Days of Future Past by Bryan Singer!
+    reply: Sounds good! Let us go see X-Men Days of Future Past by Bryan Singer!
   - id: 17
-    subject: Captain America: The Winter Soldier
-    content: Let us go see Captain America: The Winter Soldier by Anthony Russo, Joe Russo!
-    reply: Sounds good! Let us go see Captain America: The Winter Soldier by Anthony Russo, Joe Russo!
+    subject: Captain America The Winter Soldier
+    content: Let us go see Captain America The Winter Soldier by Anthony Russo, Joe Russo!
+    reply: Sounds good! Let us go see Captain America The Winter Soldier by Anthony Russo, Joe Russo!
   - id: 18
     subject: Edge of Tomorrow
     content: Let us go see Edge of Tomorrow by Doug Liman!
@@ -125,9 +125,9 @@ action:
     content: Let us go see Big Hero 6 by Don Hall, Chris Williams!
     reply: Sounds good! Let us go see Big Hero 6 by Don Hall, Chris Williams!
   - id: 32
-    subject: 300: Rise of an Empire
-    content: Let us go see 300: Rise of an Empire by Noam Murro!
-    reply: Sounds good! Let us go see 300: Rise of an Empire by Noam Murro!
+    subject: 300 Rise of an Empire
+    content: Let us go see 300 Rise of an Empire by Noam Murro!
+    reply: Sounds good! Let us go see 300 Rise of an Empire by Noam Murro!
   - id: 33
     subject: Need for Speed
     content: Let us go see Need for Speed by Scott Waugh!
@@ -189,9 +189,9 @@ action:
     content: Let us go see Stretch by Joe Carnahan!
     reply: Sounds good! Let us go see Stretch by Joe Carnahan!
   - id: 48
-    subject: Sinbad: The Fifth Voyage
-    content: Let us go see Sinbad: The Fifth Voyage by Shahin Sean Solimon!
-    reply: Sounds good! Let us go see Sinbad: The Fifth Voyage by Shahin Sean Solimon!
+    subject: Sinbad The Fifth Voyage
+    content: Let us go see Sinbad The Fifth Voyage by Shahin Sean Solimon!
+    reply: Sounds good! Let us go see Sinbad The Fifth Voyage by Shahin Sean Solimon!
   - id: 49
     subject: Appleseed Alpha
     content: Let us go see Appleseed Alpha by Shinji Aramaki!
@@ -267,9 +267,9 @@ family:
     content: Let us go see Paddington by Paul King!
     reply: Sounds good! Let us go see Paddington by Paul King!
   - id: 17
-    subject: Planes: Fire & Rescue
-    content: Let us go see Planes: Fire & Rescue by Roberts Gannaway!
-    reply: Sounds good! Let us go see Planes: Fire & Rescue by Roberts Gannaway!
+    subject: Planes Fire & Rescue
+    content: Let us go see Planes Fire & Rescue by Roberts Gannaway!
+    reply: Sounds good! Let us go see Planes Fire & Rescue by Roberts Gannaway!
   - id: 18
     subject: Mitt
     content: Let us go see Mitt by Greg Whiteley!
@@ -283,9 +283,9 @@ family:
     content: Let us go see Jamesy Boy by Trevor White!
     reply: Sounds good! Let us go see Jamesy Boy by Trevor White!
   - id: 21
-    subject: My Little Pony: Equestria Girls - Rainbow Rocks
-    content: Let us go see My Little Pony: Equestria Girls - Rainbow Rocks by Jayson Thiessen, Ishi Rudell!
-    reply: Sounds good! Let us go see My Little Pony: Equestria Girls - Rainbow Rocks by Jayson Thiessen, Ishi Rudell!
+    subject: My Little Pony Equestria Girls - Rainbow Rocks
+    content: Let us go see My Little Pony Equestria Girls - Rainbow Rocks by Jayson Thiessen, Ishi Rudell!
+    reply: Sounds good! Let us go see My Little Pony Equestria Girls - Rainbow Rocks by Jayson Thiessen, Ishi Rudell!
   - id: 22
     subject: Cloud 9
     content: Let us go see Cloud 9 by Paul Hoen!
@@ -307,9 +307,9 @@ family:
     content: Let us go see Jamesy Boy by Trevor White!
     reply: Sounds good! Let us go see Jamesy Boy by Trevor White!
   - id: 27
-    subject: My Little Pony: Equestria Girls - Rainbow Rocks
-    content: Let us go see My Little Pony: Equestria Girls - Rainbow Rocks by Jayson Thiessen, Ishi Rudell!
-    reply: Sounds good! Let us go see My Little Pony: Equestria Girls - Rainbow Rocks by Jayson Thiessen, Ishi Rudell!
+    subject: My Little Pony Equestria Girls - Rainbow Rocks
+    content: Let us go see My Little Pony Equestria Girls - Rainbow Rocks by Jayson Thiessen, Ishi Rudell!
+    reply: Sounds good! Let us go see My Little Pony Equestria Girls - Rainbow Rocks by Jayson Thiessen, Ishi Rudell!
   - id: 28
     subject: Cloud 9
     content: Let us go see Cloud 9 by Paul Hoen!
@@ -319,9 +319,9 @@ family:
     content: Let us go see Rich Hill by !
     reply: Sounds good! Let us go see Rich Hill by !
   - id: 30
-    subject: Dragon Nest: Warriors' Dawn
-    content: Let us go see Dragon Nest: Warriors' Dawn by Yuefeng Song!
-    reply: Sounds good! Let us go see Dragon Nest: Warriors' Dawn by Yuefeng Song!
+    subject: Dragon Nest Warriors Dawn
+    content: Let us go see Dragon Nest Warriors Dawn by Yuefeng Song!
+    reply: Sounds good! Let us go see Dragon Nest Warriors' Dawn by Yuefeng Song!
   - id: 31
     subject: Song of the Sea
     content: Let us go see Song of the Sea by Tomm Moore!
@@ -331,9 +331,9 @@ family:
     content: Let us go see Taking My Parents to Burning Man by Joel Ashton McCarthy, Bryant H. Boesen!
     reply: Sounds good! Let us go see Taking My Parents to Burning Man by Joel Ashton McCarthy, Bryant H. Boesen!
   - id: 33
-    subject: Island of Lemurs: Madagascar
-    content: Let us go see Island of Lemurs: Madagascar by David Douglas!
-    reply: Sounds good! Let us go see Island of Lemurs: Madagascar by David Douglas!
+    subject: Island of Lemurs Madagascar
+    content: Let us go see Island of Lemurs Madagascar by David Douglas!
+    reply: Sounds good! Let us go see Island of Lemurs Madagascar by David Douglas!
   - id: 34
     subject: Ivory Tower
     content: Let us go see Ivory Tower by Andrew Rossi!
@@ -347,9 +347,9 @@ family:
     content: Let us go see The Current by Nikita Zubarev!
     reply: Sounds good! Let us go see The Current by Nikita Zubarev!
   - id: 37
-    subject: Glen Campbell: I'll Be Me
-    content: Let us go see Glen Campbell: I'll Be Me by James Keach!
-    reply: Sounds good! Let us go see Glen Campbell: I'll Be Me by James Keach!
+    subject: Glen Campbell I'll Be Me
+    content: Let us go see Glen Campbell I'll Be Me by James Keach!
+    reply: Sounds good! Let us go see Glen Campbell I'll Be Me by James Keach!
   - id: 38
     subject: How to Build a Better Boy
     content: Let us go see How to Build a Better Boy by Paul Hoen!
@@ -387,9 +387,9 @@ family:
     content: Let us go see Life's Essentials with Ruby Dee by Muta'Ali Muhammad!
     reply: Sounds good! Let us go see Life's Essentials with Ruby Dee by Muta'Ali Muhammad!
   - id: 47
-    subject: One Last Hug: Three Days at Grief Camp
-    content: Let us go see One Last Hug: Three Days at Grief Camp by !
-    reply: Sounds good! Let us go see One Last Hug: Three Days at Grief Camp by !
+    subject: One Last Hug Three Days at Grief Camp
+    content: Let us go see One Last Hug Three Days at Grief Camp by !
+    reply: Sounds good! Let us go see One Last Hug Three Days at Grief Camp by !
   - id: 48
     subject: Advanced Style
     content: Let us go see Advanced Style by Lina Plioplyte!
