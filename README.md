@@ -2,9 +2,6 @@
 
 ### Running the experiment
 
-Run `rake xray:movies_experiment` to run it with your local env, or run it with
-Docker (preferred).
-
 First, install the two dependencies
 
 * [Docker](https://docs.docker.com/installation/)
